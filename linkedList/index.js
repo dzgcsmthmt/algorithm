@@ -188,3 +188,81 @@ function removeNthFromEnd(head, n) {
 }
 //removeNthFromEnd(l2.head,2);
 //l2.print()
+
+
+//6. 交换链表中的相邻结点
+//Input: (7 -> 2 -> 4 -> 3)
+//Output: 2 -> 7 -> 3 -> 4
+function swapPairs(head) {
+    var ll = new LinkedList();
+    ll.append(-1);
+    var node = ll.head;
+    node.next = head;
+    var pre = node;
+    while (pre.next != null && pre.next.next != null) {
+        var l1 = pre.next, l2 = pre.next.next;
+        var next = l2.next;
+        l1.next = next;
+        l2.next = l1;
+        pre.next = l2;
+
+        pre = l1;
+    }
+    return ll;
+}
+
+var l4 = new LinkedList();
+
+l4.append(7);
+l4.append(2);
+l4.append(4);
+l4.append(3);
+
+console.log(swapPairs(l4.head));
+
+//7. 链表求和
+//Input: (7 -> 2 -> 4 -> 3) + (5 -> 6 -> 4)
+//Output: 7 -> 8 -> 0 -> 7
+
+function addTwoNumbers(l1,l2){
+    var stack1 = buildStack(l1);
+    var stack2 = buildStack(l2);
+    var linked = new LinkedList();
+    var carry = 0;
+    while(!stack1.isEmpty() || !stack2.isEmpty() || carry){
+        var val1 = stack1.isEmpty() ? 0 : stack1.pop();
+        var val2 = stack2.isEmpty() ? 0 : stack2.pop();
+        var sum = val1 + val2 + carry;
+        var node = new Node(sum);
+        node.next = linked.head;
+        linked.head = node;
+        carry = (sum / 10) >> 0;
+    }
+
+    return linked;
+
+}
+
+function buildStack(l){
+    var stack = new Stack();
+    var n = l.head;
+    while(n){
+        stack.push(n.val);
+        n = n.next;
+    }
+    return stack;
+}
+
+
+var l4 = new LinkedList();
+
+l4.append(7);
+l4.append(2);
+l4.append(4);
+l4.append(3);
+
+var l5 = new LinkedList();
+l5.append(5);
+l5.append(6);
+l5.append(4);
+//addTwoNumbers(l4,l5).print()
