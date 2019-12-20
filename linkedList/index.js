@@ -319,3 +319,29 @@ l8.append(2);
 l8.append(7);
 
 console.log(isPalindrome(l8.head))
+
+
+
+//10. 链表元素按奇偶聚集
+function oddEvenList(head) {
+    if (head == null) {
+        return head;
+    }
+    var odd = head, even = head.next, evenHead = even;
+    while (even != null && even.next != null) {
+        odd.next = odd.next.next;
+        odd = odd.next;
+        even.next = even.next.next;
+        even = even.next;
+    }
+    odd.next = evenHead;
+    return head;
+}
+
+var l10 = new LinkedList();
+l10.append(1);
+l10.append(2);
+l10.append(3);
+l10.append(4);
+l10.append(5);
+console.log(oddEvenList(l10.head));
