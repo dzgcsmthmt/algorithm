@@ -153,3 +153,26 @@ function numSquaresDp(n) {
 
 
 console.log(numSquares(12)) //3
+
+
+//最少硬币找零问题
+
+function minCoins(nums,total){
+    var res = new Array(total + 1).fill(Number.MAX_SAFE_INTEGER);
+
+    res[0] = 0;
+
+    for(var i = 1;i <= total;i++){
+        for(var j = 0;j < nums.length;j++){
+            if(i >= nums[j]){
+                res[i] = Math.min(res[i], res[i - nums[j]] + 1);
+            }
+            
+        }
+    }
+
+    return res[total];
+
+}
+
+console.log(minCoins([2,5,7],27));
