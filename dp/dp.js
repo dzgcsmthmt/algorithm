@@ -233,3 +233,34 @@ var longestCommonSubsequence = function(text1, text2) {
 };
 
 console.log(longestCommonSubsequence( "abcde","aced" )) //3
+
+
+//把 n 个骰子扔在地上，求点数和为 s 的概率。
+function dicesSum(n) {
+    const face = 6;
+    const pointNum = face * n;
+    const totalNum = Math.pow(6, n);
+    var dp = new Array(n + 1);
+    for(let i = 0;i < n + 1;i++){
+        dp[i] = new Array(pointNum + 1).fill(0);
+    }
+
+
+    for (let i = 1; i <= face; i++)
+        dp[1][i] = 1;
+
+    for (let i = 2; i <= n; i++)
+        for (let j = i; j <= pointNum; j++)     /* 使用 i 个骰子最小点数为 i */
+            for (let k = 1; k <= face && k <= j; k++)
+                dp[i][j] += dp[i - 1][j - k];
+        
+    console.log(dp);
+
+    var ret = [];
+    for (let i = n; i <= pointNum; i++)
+        ret.push(dp[n][i] / totalNum);
+
+    return ret;
+}
+
+console.log(dicesSum(3))
