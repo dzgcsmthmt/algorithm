@@ -1,6 +1,6 @@
 function Node(value){
     this.value = value;
-    this.next = next;
+    this.next = null;
 }
 
 function LinkedList(){
@@ -41,3 +41,16 @@ link.add(new Node(3));
 link.add(new Node(4));
 link.add(new Node(5));
 link.print();
+
+function reverseLinkRecur(head){
+    if (head == null || head.next == null) {
+        return head;
+    }
+    var next = head.next;
+    var newHead = reverseLinkRecur(next);
+    next.next = head;
+    head.next = null;
+    return newHead;
+}
+
+console.log(reverseLinkRecur(link.head));
