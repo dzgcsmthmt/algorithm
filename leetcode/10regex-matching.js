@@ -54,6 +54,52 @@ var isMatch = function(s, p) {
 
 };
 
+/*
+function isMatch(str, pattern) {
+    var l1 = str.length;
+    var l2 = pattern.length;
+
+    var dp = new Array(l1 + 1).fill([]);
+
+    dp = dp.map( item => new Array(l2 + 1).fill(false));
+
+    dp[0][0] = true;
+
+    //处理str为空  pattern里有*的情况
+    for(var i = 1; i <= l2;i++){
+        if(pattern[i - 1] == '*'){
+            dp[0][i] = dp[0][i - 2];
+        }
+    }
+       
+    //从尾部开始匹配    
+    for(var i = 1;i <= l1;i++){
+        for(var j = 1;j <= l2;j++){
+            //先处理不是*的情况
+            if(pattern[j - 1] != '*'){
+                //最后一位相同或者pattern最后一位是. 看前面能不能匹配
+                if(str[i - 1] == pattern[j -1] || pattern[j - 1] == '.'){
+                    dp[i][j] = dp[i - 1][j - 1];
+                }
+            }else{
+                //把*按照0处理
+                if(j > 1){
+                    dp[i][j] = dp[i][j] || dp[i][j - 2];
+                }
+                //能匹配看字符串前一位可不可以匹配
+                if(str[i - 1] == pattern[j - 2] || pattern[j - 2] == '.'){
+                    dp[i][j] = dp[i][j] || dp[i -1][j];
+                }
+
+            }
+        }
+    }
+
+    return dp[l1][l2];
+
+
+};
+*/
 
 console.log(isMatch("aa","a"));
 console.log(isMatch("aa","a*"));
