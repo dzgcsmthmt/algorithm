@@ -22,8 +22,10 @@ function getLen(str,l,r){
 
 function lpsdp(str){
     var n = str.length;
+    if(n == 0) return "";
+    if(n == 1) return str;
     var dp = new Array(n - 1);
-    var len = -1;
+    var len = 1;
     var left = 0;
     for(var i = 0; i < n; i++){
         dp[i] = new Array(n - 1).fill(0);
