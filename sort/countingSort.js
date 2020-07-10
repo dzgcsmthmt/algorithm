@@ -63,6 +63,18 @@ function countingSort2(arr){
         accu[arr[i] - min]--;
     }
 
+    /**
+    *  
+        let accu = [pos[0]];
+        for(var i = 1; i < pos.length;i++){
+            accu[i] = accu[i - 1] + pos[i];
+        }
+        for(var i = arr.length - 1;i >= 0;i--){
+            res[--accu[arr[i] - min]] = arr[i];
+        }
+
+    */
+
     return res;
 
 }
