@@ -39,8 +39,12 @@ var threeSum = function(nums) {
                 r--;
             }else{
                 res.push([nums[i],nums[l],nums[r]]);
-                l++;
-                r--;
+                var left = l;
+                while(left < r && nums[left + 1] == nums[l]){left++;}
+                l = left + 1;
+                var right = r;
+                while(l < right && nums[right - 1] == nums[r]){right--};
+                r = right - 1;
             }
         }
     }
