@@ -115,8 +115,33 @@ function backPackVI(nums,target){
             }
         }
     }
-    console.log(dp);
+    // console.log(dp);
     return dp[target];
 }
 
-console.log(backPackVI([1,2,4],4));
+// console.log(backPackVI([1,2,4],4));
+
+function backPackVIRe(nums,target){
+    var res = [];
+    var len = nums.length;
+    dfs(nums,target,[]);
+    return res;
+
+    function dfs(nums,target,arr){
+        if(target == 0){
+            res.push(arr.slice());
+            return;
+        }
+
+        for(var i = 0; i < len;i++){
+            if(target >= nums[i]){
+                arr.push(nums[i]);
+                dfs(nums,target - nums[i],arr);
+                arr.pop();
+            }
+        }
+
+    }
+
+}
+console.log(backPackVIRe([1,2,4],4));
