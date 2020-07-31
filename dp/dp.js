@@ -263,4 +263,35 @@ function dicesSum(n) {
     return ret;
 }
 
-console.log(dicesSum(3))
+console.log(dicesSum(3));
+
+
+//偶数位整数分两边相加相等的个数
+
+function countSameSum(num){
+    var str = num + '';
+    var len = str.length;
+    var dp = new Array(len + 1);
+    dp[0] = 0;
+    var res = 0;
+    var arr = [];
+    for(var i = 1; i <= len;i++){
+        dp[i] = dp[i - 1] + str[i - 1] * 1;
+    }
+    console.log(dp);
+
+    for(var i = 0 ;i <= len;i++){
+        for(var j = i + 2; j <= len;j+=2){
+            var mid = (i + j) >> 1;
+            if(dp[mid] - dp[i] == dp[j] - dp[mid]){
+                arr.push(str.substring(i,j));
+                res++;
+            }
+        }
+    }
+    console.log(arr);
+    return res;
+
+}
+
+console.log(countSameSum(28733962));
